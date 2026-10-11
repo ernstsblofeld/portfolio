@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Olivier G. Burri — Réalisateur & VFX</title>
+  <meta name="description" content="Portfolio d'Olivier G. Burri : films, effets spéciaux numériques (Mediamax VFX), prises de vue aériennes et tests de matériel cinéma.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="logo">O<span>G</span>B</a>
+    <nav>
+      <a href="#travaux">Travaux</a>
+      <a href="#mediamax">Mediamax</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img src="https://i.ytimg.com/vi/LJefRF0cIwg/maxresdefault.jpg" alt="">
+      </div>
+      <div class="hero-content">
+        <p class="eyebrow">Réalisateur · Effets spéciaux numériques · Image</p>
+        <h1>Olivier G. Burri</h1>
+        <p class="lede">Des courts-métrages aux effets visuels, en passant par le drone et les rigs caméra : vingt ans à raconter des histoires image par image.</p>
+        <div class="hero-actions">
+          <button class="btn primary" data-play="LJefRF0cIwg" data-title="Silence — 20 Year Anniversary Remaster">▶ Voir « Silence »</button>
+          <a class="btn ghost" href="#travaux">Parcourir les travaux</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Chiffres clés">
+      <div><strong>2</strong><span>chaînes YouTube</span></div>
+      <div><strong>30+</strong><span>vidéos publiées</span></div>
+      <div><strong>55k+</strong><span>vues cumulées</span></div>
+      <div><strong>2014</strong><span>depuis</span></div>
+    </section>
+
+    <section id="travaux" class="section">
+      <div class="section-head">
+        <h2>Travaux choisis</h2>
+        <div class="filters" role="tablist">
+          <button class="chip active" data-filter="all">Tout</button>
+          <button class="chip" data-filter="film">Films</button>
+          <button class="chip" data-filter="vfx">VFX</button>
+          <button class="chip" data-filter="aerial">Aérien</button>
+          <button class="chip" data-filter="gear">Matériel & tutos</button>
+        </div>
+      </div>
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <section id="mediamax" class="section split">
+      <div>
+        <p class="eyebrow">Studio</p>
+        <h2>Mediamax Productions</h2>
+        <p>L'atelier des effets spéciaux numériques. Compositing, tracking, 3D sous Blender et étalonnage sous DaVinci Resolve — des projets en cours comme <em>IVV</em> aux remasters de films plus anciens.</p>
+        <ul class="tags">
+          <li>DaVinci Resolve</li><li>Fusion</li><li>Blender</li><li>Blackmagic 6K / 12K</li><li>RED</li><li>DJI</li>
+        </ul>
+        <a class="btn ghost" href="https://www.youtube.com/@ogburri" target="_blank" rel="noopener">Chaîne Mediamax →</a>
+      </div>
+      <button class="feature" data-play="2dHRf-ZJvxg" data-title="IVV Scène 23 — La rançon (WIP)">
+        <img src="https://i.ytimg.com/vi/2dHRf-ZJvxg/hqdefault.jpg" alt="IVV Scène 23 — La rançon" loading="lazy">
+        <span class="play">▶</span>
+        <span class="feature-cap">En cours · IVV — Scène 23 « La rançon »</span>
+      </button>
+    </section>
+
+    <section id="apropos" class="section about">
+      <figure class="portrait">
+        <img src="images/olivier-tournage.jpg" alt="Olivier G. Burri derrière une caméra RED sur le tournage d'Ilot 13" loading="lazy">
+        <figcaption>Sur le tournage d'<em>Ilot 13</em></figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">À propos</p>
+        <h2>Raconter avec la technique, pas pour elle.</h2>
+        <p>Je réalise des films depuis plus de vingt ans — de <em>Silence</em> (2005, remasterisé en 2025) à <em>Hybris</em> et <em>Fichtl's Lied</em>. J'aime pousser les outils dans leurs retranchements : RED, rigs Blackmagic, Tilta, drones DJI, tracking de surface dans Resolve. Et je partage ce que j'apprends en chemin.</p>
+        <p class="muted">Texte à personnaliser — dites-moi ce que vous voulez y mettre.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2>Travaillons ensemble</h2>
+      <p>Projet de film, effets visuels, prise de vue aérienne ?</p>
+      <div class="hero-actions center">
+        <a class="btn primary" href="mailto:ogburri@gmail.com">Écrire un e-mail</a>
+        <a class="btn ghost" href="https://www.youtube.com/@oliviergburri" target="_blank" rel="noopener">YouTube · Olivier G. Burri</a>
+        <a class="btn ghost" href="https://www.youtube.com/@ogburri" target="_blank" rel="noopener">YouTube · Mediamax</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Olivier G. Burri</footer>
+
+  <dialog id="player">
+    <div class="player-inner">
+      <button class="close" aria-label="Fermer">✕</button>
+      <div class="ratio"><iframe id="player-frame" title="Lecteur vidéo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+      <p id="player-title"></p>
+    </div>
+  </dialog>
+
+  <script src="main.js"></script>
+</body>
+</html>
