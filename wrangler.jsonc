@@ -5,5 +5,9 @@
   "assets": {
     "directory": "./",
     "not_found_handling": "404-page"
-  }
+  },
+  "routes": [
+    { "pattern": "mediamax.ch", "custom_domain": true },
+    { "pattern": "www.mediamax.ch", "custom_domain": true }
+  ]
 }
