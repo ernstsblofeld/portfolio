@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://i.ytimg.com">
-  <link rel="preload" as="image" href="https://i.ytimg.com/vi/LJefRF0cIwg/maxresdefault.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="media/silence-hero-poster.jpg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <header class="nav">
@@ -26,8 +26,14 @@
   <main id="top">
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <img src="https://i.ytimg.com/vi/LJefRF0cIwg/maxresdefault.jpg" alt="" fetchpriority="high">
+        <!-- Silence (2005), extrait de la bande-annonce ; src posé par main.js selon les préférences de l'appareil -->
+        <video id="hero-video" muted loop playsinline preload="none" poster="media/silence-hero-poster.jpg" data-src="media/silence-hero.mp4"></video>
       </div>
+      <button id="hero-toggle" class="hero-toggle" type="button" hidden>
+        <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+        <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        <span class="toggle-label">Mettre en pause le fond vidéo</span>
+      </button>
       <div class="hero-content">
         <h1>Mediamax Productions</h1>
         <p class="lede">L'atelier d'effets visuels et de films d'Olivier G. Burri. Compositing, 3D et étalonnage, du court-métrage au remaster, image par image.</p>
@@ -123,6 +129,6 @@
     <div class="ratio"><iframe id="player-frame" title="Lecteur vidéo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
   </dialog>
 
-  <script src="main.js?v=2"></script>
+  <script src="main.js?v=3"></script>
 </body>
 </html>

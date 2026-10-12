@@ -95,4 +95,21 @@ dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close();
 // removeAttribute rather than src = "" (which would load this page inside the iframe)
 dialog.addEventListener("close", () => { frame.removeAttribute("src"); });
 
+// Hero background clip: skipped when the device asks for less motion or less data (the poster stays)
+const heroVideo = document.getElementById("hero-video");
+const heroToggle = document.getElementById("hero-toggle");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const conn = navigator.connection;
+const saveData = conn && (conn.saveData || /2g|3g/.test(conn.effectiveType || ""));
+if (!reduceMotion && !saveData) {
+  heroVideo.src = heroVideo.dataset.src;
+  heroVideo.play().then(() => { heroToggle.hidden = false; }).catch(() => {});
+  heroToggle.addEventListener("click", () => {
+    const pausing = !heroVideo.paused;
+    pausing ? heroVideo.pause() : heroVideo.play();
+    heroToggle.classList.toggle("paused", pausing);
+    heroToggle.querySelector(".toggle-label").textContent = pausing ? "Relancer le fond vidéo" : "Mettre en pause le fond vidéo";
+  });
+}
+
 document.getElementById("year").textContent = new Date().getFullYear();

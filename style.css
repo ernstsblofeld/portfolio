@@ -44,7 +44,8 @@ section[id] { scroll-margin-top: 88px; }
 /* Hero */
 .hero { position: relative; min-height: 92vh; display: grid; align-items: end; padding: 0 var(--gutter) 12vh; overflow: hidden; }
 .hero-bg { position: absolute; inset: 0; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 65% 35%; opacity: .55; filter: grayscale(.2); }
+/* The trailer source carries thin black side bars: the 1.08 scale crops them out */
+.hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; opacity: .6; filter: grayscale(.15); transform: scale(1.08); }
 .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 6%, transparent 55%), linear-gradient(to right, rgba(12,12,13,.92), transparent 65%); }
 .hero-content { position: relative; max-width: 760px; }
 h1 { font: 600 clamp(46px, 8.4vw, 104px)/.95 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
@@ -54,9 +55,19 @@ h2 { font: 600 clamp(30px, 4.5vw, 48px)/1.1 var(--serif); letter-spacing: -.01em
 
 /* The one authored moment: the opening frame settles like a slow push-in ending */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-bg img { animation: settle 2.6s var(--ease-out) both; }
-  @keyframes settle { from { transform: scale(1.08); filter: grayscale(.2) brightness(.6); } }
+  .hero-bg video { animation: settle 2.6s var(--ease-out) both; }
+  @keyframes settle { from { transform: scale(1.16); filter: grayscale(.15) brightness(.5); } }
 }
+
+.hero-toggle {
+  position: absolute; right: var(--gutter); bottom: 32px; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+  border: 1px solid rgba(242, 239, 233, .25); border-radius: 999px; background: rgba(12, 12, 13, .55); backdrop-filter: blur(6px);
+  color: var(--text-soft); font-size: 13px; transition: border-color .2s, color .2s;
+}
+.hero-toggle:hover { border-color: var(--text); color: var(--text); }
+.hero-toggle .icon-play, .hero-toggle.paused .icon-pause { display: none; }
+.hero-toggle.paused .icon-play { display: block; }
 
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 12px 22px; border-radius: 999px; font-weight: 500; font-size: 15px; transition: background-color .2s, border-color .2s, color .2s; }
 .btn.primary { background: var(--accent); color: var(--bg); }
@@ -151,7 +162,9 @@ dialog::backdrop { background: rgba(0, 0, 0, .9); }
   .nav nav { width: 100%; justify-content: space-between; gap: 8px; }
   section[id] { scroll-margin-top: 104px; }
   .hero { min-height: 88svh; }
-  .hero-bg img { object-position: 72% 30%; opacity: .7; }
+  .hero-bg video { object-position: 40% 40%; opacity: .7; }
+  .hero-toggle .toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .hero-toggle { padding: 0; width: 44px; justify-content: center; }
   .hero-bg::after { background: linear-gradient(to top, var(--bg) 12%, rgba(12,12,13,.35) 60%, rgba(12,12,13,.55)); }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stats div:nth-child(3) { border-left: 0; }
