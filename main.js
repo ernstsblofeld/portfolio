@@ -21,7 +21,7 @@ const labels = { film: "Film", vfx: "VFX" };
 const cats = v => [].concat(v.cat);
 const playIcon = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 const small = matchMedia("(max-width: 760px)");
-const initialCount = () => (small.matches ? 6 : 11); // cards shown under "Tout" before "voir plus": the five picks plus the GoPro on phones
+const initialCount = () => (small.matches ? 6 : 8); // cards shown under "Tout" before "voir plus": the five picks + the GoPro on phones, + one full 3-up row on desktop
 
 const escapeHtml = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 // French typography: no-break space before : ? ! » and after «
@@ -46,7 +46,7 @@ grid.innerHTML = videos.map(v => {
     </div>
     <div class="meta">
       <span class="badge">${cats(v).map(c => labels[c]).join(" et ")}</span>
-      <h3><button class="card-link" type="button" data-play="${v.id}" data-title="${t}"${v.vertical ? " data-vertical" : ""} aria-haspopup="dialog"><span class="visually-hidden">Lire la vidéo : </span>${t}</button></h3>
+      <h3><button class="card-link" type="button" data-play="${v.id}" data-title="${t}"${v.vertical ? " data-vertical" : ""} aria-haspopup="dialog" aria-label="Lire la vidéo\u00a0: ${t}">${t}</button></h3>
       <p><span>${v.year}</span><span>${v.channel}</span></p>
     </div>
   </article>`;
@@ -139,5 +139,15 @@ if (!reduceMotion && !saveData) {
     else if (!userPaused) heroVideo.play().catch(() => {});
   }).observe(heroVideo);
 }
+
+// Nav: mark the section currently in view
+const navLinks = [...document.querySelectorAll(".nav nav a")];
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(a => a.setAttribute("aria-current", String(a.hash === `#${e.target.id}`)));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+navLinks.forEach(a => { const sec = document.querySelector(a.hash); if (sec) sectionObserver.observe(sec); });
 
 document.getElementById("year").textContent = new Date().getFullYear();
