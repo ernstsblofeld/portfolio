@@ -8,6 +8,14 @@ export default {
       url.hostname = CANONICAL_HOST;
       return Response.redirect(url.toString(), 301);
     }
+    // The bare domain picks a language version: /fr/, /en/ or /de/
+    if (url.pathname === "/" || url.pathname === "/index.html") {
+      const lang = pickLanguage(request);
+      return new Response(null, {
+        status: 302,
+        headers: { Location: `/${lang}/${url.search}`, Vary: "Accept-Language, Cookie", "Cache-Control": "no-store" },
+      });
+    }
     const response = await env.ASSETS.fetch(request);
     const range = request.headers.get("Range");
     if (range && response.status === 200 && url.pathname.startsWith("/media/")) {
@@ -16,6 +24,31 @@ export default {
     return response;
   },
 };
+
+const LANGS = ["fr", "en", "de"];
+// Countries whose visitors read French or German when their browser asks for none of our three languages
+const COUNTRY_LANG = { FR: "fr", BE: "fr", LU: "fr", MC: "fr", CH: "fr", DE: "de", AT: "de", LI: "de" };
+
+// 1. the visitor's own choice (cookie set by the language switch)
+// 2. the browser's preferred languages, in order of preference
+// 3. the visitor's country (Cloudflare geolocation)
+// 4. English
+function pickLanguage(request) {
+  const saved = /(?:^|;\s*)lang=(fr|en|de)\b/.exec(request.headers.get("Cookie") || "");
+  if (saved) return saved[1];
+  const accepted = (request.headers.get("Accept-Language") || "")
+    .split(",")
+    .map(part => {
+      const [tag, ...params] = part.trim().split(";");
+      const q = params.map(p => p.trim()).find(p => p.startsWith("q="));
+      return { base: tag.slice(0, 2).toLowerCase(), q: q ? parseFloat(q.slice(2)) || 0 : 1 };
+    })
+    .filter(l => l.q > 0)
+    .sort((a, b) => b.q - a.q);
+  const match = accepted.find(l => LANGS.includes(l.base));
+  if (match) return match.base;
+  return COUNTRY_LANG[request.cf?.country] || "en";
+}
 
 // Safari only plays <video> when the server answers byte-range requests with 206 Partial Content;
 // the assets binding returns the whole file, so slice it here (media files are small).
