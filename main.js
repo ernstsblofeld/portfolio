@@ -7,12 +7,12 @@ const videos = [
   { id: "c9H8vKGcMl8", title: "Impromptu", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true },
   { id: "iWc9tmUiN9c", title: "Regrub Burger", year: 2015, cat: "film", channel: "Olivier G. Burri", featured: true },
   { id: "4IVdDhjkAe8", title: "Mister Phil (Nikon Film Festival 2014)", year: 2014, cat: "film", channel: "Olivier G. Burri", featured: true },
+  { id: "nmOSfHQw7yU", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2014, cat: "vfx", channel: "Mediamax" }, // 77 000+ vues, la plus vue des deux chaînes
   { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "oFLwiEZMrdY", title: "Le chat et le robot aspirateur", year: 2026, cat: "vfx", channel: "Mediamax" },
-  { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2026, cat: "vfx", channel: "Mediamax" },
+  { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre, édition anniversaire", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "vSsUWqNi9S8", title: "Silence II, teaser", year: 2026, cat: "film", channel: "Mediamax" },
   { id: "V8UISiZhLe8", title: "Fichtl's Lied, remake 4K", year: 2016, cat: "film", channel: "Olivier G. Burri" },
-  { id: "k2hUmBZ1Oxo", title: "Images aériennes 4K à l'iPhone 6S+", year: 2016, cat: "aerial", channel: "Olivier G. Burri" },
 ];
 
 const labels = { film: "Film", vfx: "VFX", aerial: "Aérien" };
