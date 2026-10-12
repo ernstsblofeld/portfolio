@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0c0c0d"/>
-  <path d="M14 46V18h6l12 17 12-17h6v28h-6.5V29.5L32 44 20.5 29.5V46z" fill="#e8b04b"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="240 240 1520 1520">
+  <!-- Mediamax "AA" monogram, traced from the official 2000×2000 artwork -->
+  <rect x="240" y="240" width="1520" height="1520" fill="#ED2021"/>
+  <path fill="#fff" fill-rule="evenodd" d="M338 1304 598 628H814L965 1022 1117 628H1334L1593 1304H1378L1343 1214H1108L1074 1304H858L823 1214H588L553 1304ZM624 898V1082L788 991ZM1144 898V1082L1308 991Z"/>
 </svg>
