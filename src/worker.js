@@ -41,7 +41,9 @@ function pickLanguage(request) {
     .map(part => {
       const [tag, ...params] = part.trim().split(";");
       const q = params.map(p => p.trim()).find(p => p.startsWith("q="));
-      return { base: tag.slice(0, 2).toLowerCase(), q: q ? parseFloat(q.slice(2)) || 0 : 1 };
+      const base = tag.slice(0, 2).toLowerCase();
+      // Swiss German (gsw) and Romansh (rm) readers get the German version
+      return { base: { gs: "de", rm: "de" }[base] || base, q: q ? parseFloat(q.slice(2)) || 0 : 1 };
     })
     .filter(l => l.q > 0)
     .sort((a, b) => b.q - a.q);

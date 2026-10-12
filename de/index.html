@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mediamax Productions, visuelle Effekte und Filme von Olivier G. Burri</title>
-  <meta name="description" content="Mediamax Productions, das Atelier für visuelle Effekte und Filme von Olivier G. Burri in Genf: Compositing, Color Grading, Restaurierung, Kurzfilme und Luftaufnahmen.">
+  <meta name="description" content="Mediamax Productions, das Studio für visuelle Effekte und Film von Olivier G. Burri in Genf: Compositing, Color Grading, Restaurierung, Kurzfilme und Luftaufnahmen.">
   <link rel="canonical" href="https://mediamax.ch/de/">
   <link rel="alternate" hreflang="fr" href="https://mediamax.ch/fr/">
   <link rel="alternate" hreflang="en" href="https://mediamax.ch/en/">
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mediamax.ch/de/">
   <meta property="og:title" content="Mediamax Productions">
-  <meta property="og:description" content="Das Atelier für visuelle Effekte und Filme von Olivier G. Burri.">
+  <meta property="og:description" content="Das Studio für visuelle Effekte und Film von Olivier G. Burri.">
   <meta property="og:image" content="https://mediamax.ch/media/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="628">
@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://i.ytimg.com">
   <link rel="preload" as="image" href="/media/silence-hero-poster.jpg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=17">
+  <link rel="stylesheet" href="/style.css?v=18">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,9 +57,9 @@
     <a href="#top" class="logo" aria-label="Mediamax Productions, zurück nach oben"><img class="logo-mark" src="/favicon.svg" alt="" width="40" height="40"><img class="logo-word" src="/images/brand/mediamax-wordmark-720.png" alt="" width="720" height="91"></a>
     <div class="nav-right">
       <nav aria-label="Hauptnavigation">
-        <a href="#travaux">Werke</a>
-        <a href="#mediamax">Atelier</a>
-        <a href="#apropos">Profil</a>
+        <a href="#travaux">Arbeiten</a>
+        <a href="#mediamax">Studio</a>
+        <a href="#apropos">Über mich</a>
         <a href="#contact">Kontakt</a>
       </nav>
       <div class="lang" role="group" aria-label="Sprache">
@@ -68,13 +68,16 @@
         <a href="/de/" hreflang="de" lang="de" data-lang="de" title="Deutsch" aria-current="page">DE</a>
         <a href="/it/" hreflang="it" lang="it" data-lang="it" title="Italiano">IT</a>
       </div>
-      <label class="visually-hidden" for="lang-select">Sprache</label>
-      <select id="lang-select" class="lang-select">
-        <option value="fr" lang="fr">FR</option>
-        <option value="en" lang="en">EN</option>
-        <option value="de" lang="de" selected>DE</option>
-        <option value="it" lang="it">IT</option>
-      </select>
+      <!-- Phones: a disclosure of real links (a select would navigate on every arrow key) -->
+      <details class="lang-menu">
+        <summary aria-label="Sprache : Deutsch">DE</summary>
+        <ul>
+          <li><a href="/fr/" hreflang="fr" lang="fr" data-lang="fr">Français</a></li>
+          <li><a href="/en/" hreflang="en" lang="en" data-lang="en">English</a></li>
+          <li><a href="/de/" hreflang="de" lang="de" data-lang="de" aria-current="page">Deutsch</a></li>
+          <li><a href="/it/" hreflang="it" lang="it" data-lang="it">Italiano</a></li>
+        </ul>
+      </details>
     </div>
   </header>
 
@@ -87,11 +90,11 @@
       </div>
       <div class="hero-content">
         <h1>Mediamax Productions</h1>
-        <p class="lede">Das Atelier für visuelle Effekte und Filme von Olivier G. Burri. Compositing, Color Grading und Restaurierung, vom Kurzfilm bis zum Archivmaterial.</p>
+        <p class="lede">Das Studio für visuelle Effekte und Film von Olivier G. Burri. Compositing, Color Grading und Restaurierung, vom Kurzfilm bis zum Archivmaterial.</p>
         <div class="hero-actions">
           <button class="btn primary" type="button" data-play="LJefRF0cIwg" data-title="Silence, remasterte Fassung" aria-haspopup="dialog">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
-            «Silence» ansehen, der Kurzfilm
+            Kurzfilm «Silence» ansehen
           </button>
           <a class="btn ghost" href="#travaux">Arbeiten entdecken</a>
         </div>
@@ -104,7 +107,7 @@
     </section>
 
     <section class="stats" aria-label="Kennzahlen">
-      <div><strong>20 Jahre</strong><span>Filmschaffen, seit <i>Silence</i> (2005)</span></div>
+      <div><strong>20 Jahre</strong><span>Filmschaffen seit <i>Silence</i> (2005)</span></div>
       <div><strong>70+</strong><span>veröffentlichte Videos</span></div>
       <div><strong>175’000+</strong><span>Aufrufe insgesamt</span></div>
       <div><strong>2</strong><span>YouTube-Kanäle</span></div>
@@ -131,12 +134,12 @@
 
     <section id="mediamax" class="section atelier">
       <div class="atelier-intro">
-        <h2>Das Atelier</h2>
+        <h2>Das Studio</h2>
         <p>Mediamax begleitet einen Film vom Dreh bis zum fertigen Bild. Drei Fachgebiete unter einem Dach:</p>
         <ul class="offers">
           <li><h3>Compositing und visuelle Effekte</h3><p>3D-Integration in Blender, Tracking, Retusche und Austausch von Bildelementen in Fusion.</p></li>
-          <li><h3>Color Grading und Restaurierung</h3><p>Looks, Anschlüsse und die Aufbereitung älterer Aufnahmen, wie <i>Silence</i>, zum 20-Jahr-Jubiläum restauriert.</p></li>
-          <li><h3>Luftaufnahmen</h3><p>DJI-Drohnen, von der Flugplanung bis zum gegradeten Bild.</p></li>
+          <li><h3>Color Grading und Restaurierung</h3><p>Looks, Anschlüsse und die Aufbereitung älterer Aufnahmen, etwa <i>Silence</i>, zum 20-Jahr-Jubiläum restauriert.</p></li>
+          <li><h3>Luftaufnahmen</h3><p>DJI-Drohnen, von der Flugplanung bis zum fertig gegradeten Bild.</p></li>
         </ul>
         <p class="tools">Kameras: RED, Blackmagic 6K und URSA. Schnitt, Grading und Finishing: DaVinci Resolve. Visuelle Effekte: Fusion und Blender.</p>
       </div>
@@ -162,14 +165,14 @@
       </figure>
       <div>
         <h2>Olivier G. Burri</h2>
-        <p class="quote">Mit der Technik erzählen, nicht für sie.</p>
-        <p>Ich mache seit über zwanzig Jahren Filme, von <i>Silence</i> (2005, restauriert 2025) bis <i>Hybris</i> und <i>Fichtl's Lied</i>. Mit Mediamax ergänze ich meine eigenen Drehs um visuelle Effekte und Color Grading. Ich drehe mit RED und Blackmagic, mit Tilta-Rigs und DJI-Drohnen, und übernehme danach Schnitt, Grading und Finishing in DaVinci Resolve. Und ich teile, was ich dabei lerne.</p>
+        <p class="quote">Mit Technik erzählen, nicht um der Technik willen.</p>
+        <p>Ich mache seit über zwanzig Jahren Filme, von <i>Silence</i> (2005, restauriert 2025) bis <i>Hybris</i> und <i>Fichtl’s Lied</i>. Mit Mediamax ergänze ich meine eigenen Drehs um visuelle Effekte und Color Grading. Ich drehe mit RED und Blackmagic, mit Tilta-Rigs und DJI-Drohnen, und übernehme danach Schnitt, Grading und Finishing in DaVinci Resolve. Und ich teile, was ich dabei lerne.</p>
       </div>
     </section>
 
     <section id="contact" class="section contact">
       <h2>Arbeiten wir zusammen</h2>
-      <p>Ein Film, visuelle Effekte, eine Luftaufnahme? Schreiben Sie Mediamax.</p>
+      <p>Ein Film, visuelle Effekte, eine Luftaufnahme? Schreiben Sie uns.</p>
       <div class="contact-actions">
         <a class="btn primary" href="mailto:contact@mediamax.ch">E-Mail an contact@mediamax.ch</a>
       </div>
@@ -187,7 +190,7 @@
     <address>Mediamax Sàrl<br>Rue du Jeu-de-l'Arc 15<br>1207 Genève</address>
     <a class="footer-upload" href="https://mediamax.cloud" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v4h14v-4"/></svg>
-      Zugang zur Mediamax Cloud<span class="visually-hidden"> (öffnet in neuem Tab)</span>
+      Zugang zur Mediamax Cloud<span class="visually-hidden"> (öffnet in einem neuen Tab)</span>
     </a>
   </footer>
 
@@ -202,6 +205,6 @@
     <div class="ratio" id="player-ratio"><iframe id="player-frame" title="Videoplayer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe></div>
   </dialog>
 
-  <script src="/main.js?v=16"></script>
+  <script src="/main.js?v=17"></script>
 </body>
 </html>

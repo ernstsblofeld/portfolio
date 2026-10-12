@@ -18,7 +18,7 @@
       var langs = ["fr", "en", "de", "it"];
       var saved = (document.cookie.match(/(?:^|; )lang=(fr|en|de|it)/) || [])[1];
       var pick = saved || (navigator.languages || [navigator.language || ""])
-        .map(function (l) { return l.slice(0, 2).toLowerCase(); })
+        .map(function (l) { var b = l.slice(0, 2).toLowerCase(); return { gs: "de", rm: "de" }[b] || b; })
         .filter(function (l) { return langs.indexOf(l) >= 0; })[0] || "en";
       location.replace("/" + pick + "/" + location.hash);
     })();

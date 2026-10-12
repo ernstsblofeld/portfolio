@@ -11,19 +11,19 @@ import json
 import pathlib
 import re
 
-CSS_V = "17"
-JS_V = "16"
+CSS_V = "18"
+JS_V = "17"
 LANGS = ["fr", "en", "de", "it"]
+NAMES = {"fr": "Français", "en": "English", "de": "Deutsch", "it": "Italiano"}
 
 root = pathlib.Path(__file__).resolve().parent.parent
 template = (root / "i18n" / "page.html").read_text(encoding="utf-8")
 strings = json.loads((root / "i18n" / "strings.json").read_text(encoding="utf-8"))
 
 for lang in LANGS:
-    values = dict(strings[lang], lang=lang, css_v=CSS_V, js_v=JS_V)
+    values = dict(strings[lang], lang=lang, css_v=CSS_V, js_v=JS_V, lang_code=lang.upper(), lang_name=NAMES[lang])
     for other in LANGS:
         values[f"cur_{other}"] = ' aria-current="page"' if other == lang else ""
-        values[f"sel_{other}"] = " selected" if other == lang else ""
     page = re.sub(r"\{\{(\w+)\}\}", lambda m: values[m.group(1)], template)
     out = root / lang / "index.html"
     out.parent.mkdir(exist_ok=True)
@@ -51,7 +51,7 @@ for lang in LANGS:
       var langs = ["fr", "en", "de", "it"];
       var saved = (document.cookie.match(/(?:^|; )lang=(fr|en|de|it)/) || [])[1];
       var pick = saved || (navigator.languages || [navigator.language || ""])
-        .map(function (l) { return l.slice(0, 2).toLowerCase(); })
+        .map(function (l) { var b = l.slice(0, 2).toLowerCase(); return { gs: "de", rm: "de" }[b] || b; })
         .filter(function (l) { return langs.indexOf(l) >= 0; })[0] || "en";
       location.replace("/" + pick + "/" + location.hash);
     })();

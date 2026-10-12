@@ -68,13 +68,16 @@
         <a href="/de/" hreflang="de" lang="de" data-lang="de" title="Deutsch"{{cur_de}}>DE</a>
         <a href="/it/" hreflang="it" lang="it" data-lang="it" title="Italiano"{{cur_it}}>IT</a>
       </div>
-      <label class="visually-hidden" for="lang-select">{{lang_label}}</label>
-      <select id="lang-select" class="lang-select">
-        <option value="fr" lang="fr"{{sel_fr}}>FR</option>
-        <option value="en" lang="en"{{sel_en}}>EN</option>
-        <option value="de" lang="de"{{sel_de}}>DE</option>
-        <option value="it" lang="it"{{sel_it}}>IT</option>
-      </select>
+      <!-- Phones: a disclosure of real links (a select would navigate on every arrow key) -->
+      <details class="lang-menu">
+        <summary aria-label="{{lang_label}} : {{lang_name}}">{{lang_code}}</summary>
+        <ul>
+          <li><a href="/fr/" hreflang="fr" lang="fr" data-lang="fr"{{cur_fr}}>Français</a></li>
+          <li><a href="/en/" hreflang="en" lang="en" data-lang="en"{{cur_en}}>English</a></li>
+          <li><a href="/de/" hreflang="de" lang="de" data-lang="de"{{cur_de}}>Deutsch</a></li>
+          <li><a href="/it/" hreflang="it" lang="it" data-lang="it"{{cur_it}}>Italiano</a></li>
+        </ul>
+      </details>
     </div>
   </header>
 
