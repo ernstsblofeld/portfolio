@@ -163,8 +163,7 @@ h2 { font: 600 clamp(30px, 4.5vw, 48px)/1.1 var(--serif); letter-spacing: -.01em
 .contact { text-align: center; border-top: 1px solid var(--line); }
 .contact > p:first-of-type { color: var(--text-soft); font-size: 18px; margin: 16px 0 32px; }
 .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.copy-status { min-height: 1.6em; margin-top: 14px; color: var(--muted); font-size: 14px; }
-.contact-links { color: var(--muted); margin-top: 16px; }
+.contact-links { color: var(--muted); margin-top: 28px; }
 footer { display: flex; justify-content: center; color: var(--muted); font-size: 14px; padding: 32px var(--gutter) 40px; border-top: 1px solid var(--line); }
 
 /* Player */

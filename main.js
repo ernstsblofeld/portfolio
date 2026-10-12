@@ -132,16 +132,4 @@ if (!reduceMotion && !saveData) {
   }).observe(heroVideo);
 }
 
-// Copy the email address (for visitors without a mail app)
-const copyBtn = document.getElementById("copy-mail");
-const copyStatus = document.getElementById("copy-status");
-copyBtn.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(copyBtn.dataset.mail);
-    copyStatus.textContent = `Adresse copiée : ${copyBtn.dataset.mail}`;
-  } catch {
-    copyStatus.textContent = `Copie impossible ici. L'adresse est ${copyBtn.dataset.mail}`;
-  }
-});
-
 document.getElementById("year").textContent = new Date().getFullYear();
