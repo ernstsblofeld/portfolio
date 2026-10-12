@@ -175,6 +175,15 @@ h2 { font: 600 clamp(30px, 4.5vw, 48px)/1.1 var(--serif); letter-spacing: -.01em
 .contact-links { color: var(--muted); margin-top: 28px; }
 footer { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; color: var(--muted); font-size: 14px; padding: 32px var(--gutter) 40px; border-top: 1px solid var(--line); }
 footer address { font-style: normal; line-height: 1.5; }
+footer { position: relative; }
+/* Discreet client upload link (Synology portal), bottom left */
+.footer-upload {
+  position: absolute; left: var(--gutter); bottom: 32px;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px;
+  font-size: 13px; color: var(--muted); transition: color .2s;
+}
+.footer-upload .icon { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.footer-upload:hover { color: var(--text); }
 
 /* Player */
 dialog { border: 0; padding: 0; background: transparent; color: var(--text); width: min(1100px, 94vw); margin: auto; }
@@ -214,5 +223,6 @@ dialog::backdrop { background: rgba(0, 0, 0, .94); backdrop-filter: blur(6px); }
   #player-title { flex-basis: calc(100% - 64px); font-size: 18px; }
   .player-yt { order: 3; }
   .feature-cap { border-radius: 10px; }
+  .footer-upload { position: static; align-self: flex-start; margin-top: 8px; }
   .cap-extra { display: none; }
 }
