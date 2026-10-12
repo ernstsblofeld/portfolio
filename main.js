@@ -10,8 +10,6 @@ const videos = [
   { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "oFLwiEZMrdY", title: "Le chat et le robot aspirateur", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2026, cat: "vfx", channel: "Mediamax" },
-  { id: "pw-N6OE5cpQ", title: "Un bateau dans Blender", year: 2025, cat: "vfx", channel: "Mediamax" },
-  { id: "khWwsM-qQzs", title: "Le Surface Tracker de DaVinci Resolve 18", year: 2022, cat: "vfx", channel: "Mediamax" },
   { id: "vSsUWqNi9S8", title: "Silence II, teaser", year: 2026, cat: "film", channel: "Mediamax" },
   { id: "V8UISiZhLe8", title: "Fichtl's Lied, remake 4K", year: 2016, cat: "film", channel: "Olivier G. Burri" },
   { id: "mnz-Gm3vIMA", title: "Le chat et le DJI Mavic 4 Pro", year: 2025, cat: "aerial", channel: "Olivier G. Burri", vertical: true },
