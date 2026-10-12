@@ -1,45 +1,51 @@
 // Work shown on the page (gear tests and tutorials live on the YouTube channel instead).
 // Order of the first five is the owner's pick. lead: wide first card; featured: two-up after it.
+// cat: one category or several (Hybris is both a film and VFX work)
 // hd: best YouTube thumbnail that exists for this video (Hybris has no maxres)
+// pillar: vertical video letterboxed inside a 16:9 thumbnail; crop: zoom that hides a black frame burnt into the thumbnail
 const videos = [
-  { id: "siSyglaPrvA", title: "Hybris 4K (musique de Moby)", year: 2016, cat: "film", channel: "Olivier G. Burri", lead: true, hd: "sddefault" },
-  { id: "LJefRF0cIwg", title: "Silence, version remasterisée", year: 2025, cat: "film", channel: "Mediamax", featured: true },
+  { id: "siSyglaPrvA", title: "Hybris 4K (musique de Moby)", year: 2016, cat: ["film", "vfx"], channel: "Olivier G. Burri", lead: true, hd: "sddefault" },
+  { id: "LJefRF0cIwg", title: "Silence, version remasterisée", year: 2025, cat: "film", channel: "Mediamax", featured: true, crop: 1.07 },
   { id: "c9H8vKGcMl8", title: "Impromptu", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true },
   { id: "iWc9tmUiN9c", title: "Regrub Burger", year: 2015, cat: "film", channel: "Olivier G. Burri", featured: true },
   { id: "4IVdDhjkAe8", title: "Mister Phil (Nikon Film Festival 2014)", year: 2014, cat: "film", channel: "Olivier G. Burri", featured: true },
   { id: "nmOSfHQw7yU", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2014, cat: "vfx", channel: "Mediamax" }, // 77 000+ vues, la plus vue des deux chaînes
-  { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax" },
+  { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax", pillar: true, vertical: true },
   { id: "oFLwiEZMrdY", title: "Le chat et le robot aspirateur", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre, édition anniversaire", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "vSsUWqNi9S8", title: "Silence II, teaser", year: 2026, cat: "film", channel: "Mediamax" },
   { id: "V8UISiZhLe8", title: "Fichtl's Lied, remake 4K", year: 2016, cat: "film", channel: "Olivier G. Burri" },
 ];
 
-const labels = { film: "Film", vfx: "VFX", aerial: "Aérien" };
+const labels = { film: "Film", vfx: "VFX" };
+const cats = v => [].concat(v.cat);
 const playIcon = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 const small = matchMedia("(max-width: 760px)");
-const initialCount = () => (small.matches ? 5 : 11); // cards shown under "Tout" before "voir plus": all five picks on phones
+const initialCount = () => (small.matches ? 6 : 11); // cards shown under "Tout" before "voir plus": the five picks plus the GoPro on phones
 
 const escapeHtml = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// French typography: no-break space before : ? ! » and after «
+const frType = s => s.replace(/ ([:?!»])/g, "\u00a0$1").replace(/« /g, "«\u00a0");
 const thumbSrcset = v => {
   const base = `https://i.ytimg.com/vi/${v.id}/`;
-  // mq is true 16:9; sd/maxres are letterboxed or 16:9, object-fit: cover crops either way
-  return `${base}mqdefault.jpg 320w, ${base}sddefault.jpg 640w` + (v.hd === "sddefault" ? "" : `, ${base}maxresdefault.jpg 1280w`);
+  // mq is true 16:9; sd/maxres are letterboxed or 16:9, object-fit: cover crops either way.
+  // sd is declared 760w (it is 640) so 2x phones (~680 px needed) take it instead of the 1280 px maxres
+  return `${base}mqdefault.jpg 320w, ${base}sddefault.jpg 760w` + (v.hd === "sddefault" ? "" : `, ${base}maxresdefault.jpg 1280w`);
 };
 
 const grid = document.getElementById("grid");
 grid.innerHTML = videos.map(v => {
-  const t = escapeHtml(v.title);
+  const t = frType(escapeHtml(v.title));
   const kind = v.lead ? " lead" : v.featured ? " featured" : "";
   const sizes = v.lead ? "(max-width: 760px) 100vw, 800px" : v.featured ? "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 600px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 400px";
   return `
-  <article class="card${kind}" data-cat="${v.cat}">
-    <div class="thumb">
-      <img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg" srcset="${thumbSrcset(v)}" sizes="${sizes}" alt="" loading="lazy" width="320" height="180">
+  <article class="card${kind}" data-cat="${cats(v).join(" ")}">
+    <div class="thumb${v.pillar ? " pillar" : ""}"${v.pillar ? ` style="--bg:url(https://i.ytimg.com/vi/${v.id}/mqdefault.jpg)"` : ""}>
+      <img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg" srcset="${thumbSrcset(v)}" sizes="${sizes}" alt="" loading="lazy" width="320" height="180"${v.crop ? ` style="scale:${v.crop}"` : ""}>
       <span class="play-disc" aria-hidden="true">${playIcon}</span>
     </div>
     <div class="meta">
-      <span class="badge">${labels[v.cat]}</span>
+      <span class="badge">${cats(v).map(c => labels[c]).join(" et ")}</span>
       <h3><button class="card-link" type="button" data-play="${v.id}" data-title="${t}"${v.vertical ? " data-vertical" : ""} aria-haspopup="dialog"><span class="visually-hidden">Lire la vidéo : </span>${t}</button></h3>
       <p><span>${v.year}</span><span>${v.channel}</span></p>
     </div>
@@ -54,14 +60,16 @@ let filter = "all";
 let expanded = false;
 
 function render() {
-  const matching = cards.filter(c => filter === "all" || c.dataset.cat === filter);
+  const matching = cards.filter(c => filter === "all" || c.dataset.cat.split(" ").includes(filter));
   const limit = filter === "all" && !expanded ? initialCount() : Infinity;
   cards.forEach(c => { c.hidden = true; });
   matching.forEach((c, i) => { c.hidden = i >= limit; });
   const hiddenCount = matching.length - Math.min(matching.length, limit);
   more.hidden = hiddenCount === 0;
   more.textContent = `Voir les ${hiddenCount} autres vidéos`;
-  status.textContent = `${matching.length} vidéo${matching.length > 1 ? "s" : ""}`;
+  const shown = matching.length - hiddenCount;
+  const total = `${matching.length} vidéo${matching.length > 1 ? "s" : ""}`;
+  status.textContent = hiddenCount ? `${shown} sur ${total}` : total;
 }
 
 document.querySelectorAll(".chip").forEach(chip => {
@@ -72,7 +80,7 @@ document.querySelectorAll(".chip").forEach(chip => {
   });
 });
 more.addEventListener("click", () => {
-  const firstNew = cards.find(c => c.hidden && (filter === "all" || c.dataset.cat === filter));
+  const firstNew = cards.find(c => c.hidden && (filter === "all" || c.dataset.cat.split(" ").includes(filter)));
   expanded = true;
   render();
   firstNew?.querySelector(".card-link").focus();
@@ -96,7 +104,7 @@ document.addEventListener("click", e => {
   frame.title = `Lecteur vidéo : ${title}`;
   frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
   ytLink.href = `https://www.youtube.com/watch?v=${id}`;
-  document.getElementById("player-title").textContent = title;
+  document.getElementById("player-title").textContent = frType(title);
   dialog.showModal();
 });
 dialog.querySelector(".close").addEventListener("click", () => dialog.close());
