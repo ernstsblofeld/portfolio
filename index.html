@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Olivier G. Burri — Réalisateur & VFX</title>
-  <meta name="description" content="Portfolio d'Olivier G. Burri : films, effets spéciaux numériques (Mediamax VFX), prises de vue aériennes et tests de matériel cinéma.">
+  <title>Mediamax Productions, effets visuels et films d'Olivier G. Burri</title>
+  <meta name="description" content="Mediamax Productions, l'atelier d'effets visuels et de films d'Olivier G. Burri : compositing, 3D, étalonnage, courts-métrages et prises de vue aériennes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preload" as="image" href="https://i.ytimg.com/vi/LJefRF0cIwg/maxresdefault.jpg" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <header class="nav">
-    <a href="#top" class="logo">O<span>G</span>B</a>
-    <nav>
+    <a href="#top" class="logo" aria-label="Mediamax Productions, retour en haut">Mediamax</a>
+    <nav aria-label="Navigation principale">
       <a href="#travaux">Travaux</a>
-      <a href="#mediamax">Mediamax</a>
+      <a href="#mediamax">L'atelier</a>
       <a href="#apropos">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -24,14 +26,16 @@
   <main id="top">
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <img src="https://i.ytimg.com/vi/LJefRF0cIwg/maxresdefault.jpg" alt="">
+        <img src="https://i.ytimg.com/vi/LJefRF0cIwg/maxresdefault.jpg" alt="" fetchpriority="high">
       </div>
       <div class="hero-content">
-        <p class="eyebrow">Réalisateur · Effets spéciaux numériques · Image</p>
-        <h1>Olivier G. Burri</h1>
-        <p class="lede">Des courts-métrages aux effets visuels, en passant par le drone et les rigs caméra : vingt ans à raconter des histoires image par image.</p>
+        <h1>Mediamax Productions</h1>
+        <p class="lede">L'atelier d'effets visuels et de films d'Olivier G. Burri. Compositing, 3D et étalonnage, du court-métrage au remaster, image par image.</p>
         <div class="hero-actions">
-          <button class="btn primary" data-play="LJefRF0cIwg" data-title="Silence — 20 Year Anniversary Remaster">▶ Voir « Silence »</button>
+          <button class="btn primary" type="button" data-play="LJefRF0cIwg" data-title="Silence, remaster du 20e anniversaire">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+            Voir « Silence »
+          </button>
           <a class="btn ghost" href="#travaux">Parcourir les travaux</a>
         </div>
       </div>
@@ -41,74 +45,84 @@
       <div><strong>2</strong><span>chaînes YouTube</span></div>
       <div><strong>30+</strong><span>vidéos publiées</span></div>
       <div><strong>55k+</strong><span>vues cumulées</span></div>
-      <div><strong>2014</strong><span>depuis</span></div>
+      <div><strong>20 ans</strong><span>de films, depuis <i>Silence</i> (2005)</span></div>
     </section>
 
     <section id="travaux" class="section">
       <div class="section-head">
         <h2>Travaux choisis</h2>
-        <div class="filters" role="tablist">
-          <button class="chip active" data-filter="all">Tout</button>
-          <button class="chip" data-filter="film">Films</button>
-          <button class="chip" data-filter="vfx">VFX</button>
-          <button class="chip" data-filter="aerial">Aérien</button>
-          <button class="chip" data-filter="gear">Matériel & tutos</button>
+        <div class="filters" role="group" aria-label="Filtrer par catégorie">
+          <button class="chip" type="button" aria-pressed="true" data-filter="all">Tout</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="vfx">VFX</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="film">Films</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="aerial">Aérien</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="gear">Matériel et tutos</button>
         </div>
       </div>
+      <p id="grid-status" class="grid-status" aria-live="polite"></p>
       <div id="grid" class="grid"></div>
+      <button id="more" class="btn ghost more" type="button" hidden></button>
     </section>
 
     <section id="mediamax" class="section split">
       <div>
-        <p class="eyebrow">Studio</p>
-        <h2>Mediamax Productions</h2>
-        <p>L'atelier des effets spéciaux numériques. Compositing, tracking, 3D sous Blender et étalonnage sous DaVinci Resolve — des projets en cours comme <em>IVV</em> aux remasters de films plus anciens.</p>
-        <ul class="tags">
-          <li>DaVinci Resolve</li><li>Fusion</li><li>Blender</li><li>Blackmagic 6K / 12K</li><li>RED</li><li>DJI</li>
-        </ul>
-        <a class="btn ghost" href="https://www.youtube.com/@ogburri" target="_blank" rel="noopener">Chaîne Mediamax →</a>
+        <h2>L'atelier VFX</h2>
+        <p>Compositing, tracking, 3D sous Blender et étalonnage sous DaVinci Resolve. Des remasters de films anciens jusqu'à <em>IVV</em>, le projet en cours de montage.</p>
+        <p class="tools">Outils : DaVinci Resolve, Fusion, Blender. Caméras : RED, Blackmagic 6K et 12K, drones DJI.</p>
+        <a class="text-link" href="https://www.youtube.com/@ogburri" target="_blank" rel="noopener">Voir la chaîne Mediamax sur YouTube</a>
       </div>
-      <button class="feature" data-play="2dHRf-ZJvxg" data-title="IVV Scène 23 — La rançon (WIP)">
-        <img src="https://i.ytimg.com/vi/2dHRf-ZJvxg/hqdefault.jpg" alt="IVV Scène 23 — La rançon" loading="lazy">
-        <span class="play">▶</span>
-        <span class="feature-cap">En cours · IVV — Scène 23 « La rançon »</span>
-      </button>
+      <article class="feature">
+        <img src="https://i.ytimg.com/vi/2dHRf-ZJvxg/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+        <button class="play-cover" type="button" data-play="2dHRf-ZJvxg" data-title="IVV, scène 23 « La rançon » (en cours)" aria-haspopup="dialog">
+          <span class="play-disc" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>
+          <span class="feature-cap">En cours : <em>IVV</em>, scène 23 « La rançon »</span>
+        </button>
+      </article>
     </section>
 
     <section id="apropos" class="section about">
       <figure class="portrait">
-        <img src="images/olivier-tournage.jpg" alt="Olivier G. Burri derrière une caméra RED sur le tournage d'Ilot 13" loading="lazy">
+        <img src="images/olivier-tournage-960.jpg"
+             srcset="images/olivier-tournage-480.jpg 480w, images/olivier-tournage-960.jpg 960w"
+             sizes="(max-width: 760px) 100vw, 420px"
+             width="960" height="1280"
+             alt="Olivier G. Burri derrière une caméra RED sur le tournage d'Ilot 13" loading="lazy">
         <figcaption>Sur le tournage d'<em>Ilot 13</em></figcaption>
       </figure>
       <div>
-        <p class="eyebrow">À propos</p>
-        <h2>Raconter avec la technique, pas pour elle.</h2>
-        <p>Je réalise des films depuis plus de vingt ans — de <em>Silence</em> (2005, remasterisé en 2025) à <em>Hybris</em> et <em>Fichtl's Lied</em>. J'aime pousser les outils dans leurs retranchements : RED, rigs Blackmagic, Tilta, drones DJI, tracking de surface dans Resolve. Et je partage ce que j'apprends en chemin.</p>
-        <p class="muted">Texte à personnaliser — dites-moi ce que vous voulez y mettre.</p>
+        <h2>Olivier G. Burri</h2>
+        <p class="quote">Raconter avec la technique, pas pour elle.</p>
+        <p>Je réalise des films depuis plus de vingt ans, de <em>Silence</em> (2005, remasterisé en 2025) à <em>Hybris</em> et <em>Fichtl's Lied</em>. Avec Mediamax, j'ajoute les effets visuels et l'étalonnage à mes propres tournages. J'aime pousser les outils dans leurs retranchements : RED, rigs Blackmagic, Tilta, drones DJI, tracking de surface dans Resolve. Et je partage ce que j'apprends en chemin.</p>
       </div>
     </section>
 
     <section id="contact" class="section contact">
       <h2>Travaillons ensemble</h2>
-      <p>Projet de film, effets visuels, prise de vue aérienne ?</p>
-      <div class="hero-actions center">
-        <a class="btn primary" href="mailto:ogburri@gmail.com">Écrire un e-mail</a>
-        <a class="btn ghost" href="https://www.youtube.com/@oliviergburri" target="_blank" rel="noopener">YouTube · Olivier G. Burri</a>
-        <a class="btn ghost" href="https://www.youtube.com/@ogburri" target="_blank" rel="noopener">YouTube · Mediamax</a>
-      </div>
+      <p>Un film, des effets visuels, une prise de vue aérienne ? Écrivez-moi.</p>
+      <a class="btn primary" href="mailto:ogburri@gmail.com">Écrire à ogburri@gmail.com</a>
+      <p class="contact-links">Sur YouTube :
+        <a class="text-link" href="https://www.youtube.com/@ogburri" target="_blank" rel="noopener">Mediamax</a>
+        et
+        <a class="text-link" href="https://www.youtube.com/@oliviergburri" target="_blank" rel="noopener">Olivier G. Burri</a>
+      </p>
     </section>
   </main>
 
-  <footer>© <span id="year"></span> Olivier G. Burri</footer>
+  <footer>
+    <p>© <span id="year"></span> Mediamax Productions, Olivier G. Burri</p>
+    <a class="text-link" href="mailto:ogburri@gmail.com">ogburri@gmail.com</a>
+  </footer>
 
-  <dialog id="player">
-    <div class="player-inner">
-      <button class="close" aria-label="Fermer">✕</button>
-      <div class="ratio"><iframe id="player-frame" title="Lecteur vidéo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+  <dialog id="player" aria-labelledby="player-title">
+    <div class="player-head">
       <p id="player-title"></p>
+      <button class="close" type="button" aria-label="Fermer la vidéo">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
+    <div class="ratio"><iframe id="player-frame" title="Lecteur vidéo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
   </dialog>
 
-  <script src="main.js"></script>
+  <script src="main.js?v=2"></script>
 </body>
 </html>
