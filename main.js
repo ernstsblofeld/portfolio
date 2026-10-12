@@ -1,47 +1,47 @@
-// Videos from @oliviergburri and @ogburri (Mediamax Productions)
-// featured: shown large, first in the grid
+// Work shown on the page (gear tests and tutorials live on the YouTube channel instead).
+// lead: full-width first card; featured: two-up after it.
+// hd: best YouTube thumbnail that exists for this video (Hybris has no maxres)
 const videos = [
-  { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax", featured: true },
-  { id: "2dHRf-ZJvxg", title: "IVV, scène 23 « La rançon » (en cours)", year: 2026, cat: "vfx", channel: "Mediamax", featured: true },
-  { id: "vSsUWqNi9S8", title: "Silence II, teaser", year: 2026, cat: "film", channel: "Mediamax", featured: true },
-  { id: "LJefRF0cIwg", title: "Silence, remaster du 20e anniversaire", year: 2025, cat: "film", channel: "Mediamax", featured: true },
-  { id: "siSyglaPrvA", title: "Hybris (musique de Moby)", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true },
-  { id: "V8UISiZhLe8", title: "Fichtl's Lied, remake 4K", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true },
+  { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax", lead: true },
+  { id: "LJefRF0cIwg", title: "Silence, court-métrage de 2005, version restaurée", year: 2025, cat: "film", channel: "Mediamax", featured: true },
+  { id: "siSyglaPrvA", title: "Hybris (musique de Moby)", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true, hd: "sddefault" },
   { id: "oFLwiEZMrdY", title: "Le chat et le robot aspirateur", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "pw-N6OE5cpQ", title: "Un bateau dans Blender", year: 2025, cat: "vfx", channel: "Mediamax" },
   { id: "khWwsM-qQzs", title: "Le Surface Tracker de DaVinci Resolve 18", year: 2022, cat: "vfx", channel: "Mediamax" },
-  { id: "mnz-Gm3vIMA", title: "Le chat et le DJI Mavic 4 Pro", year: 2025, cat: "aerial", channel: "Olivier G. Burri" },
-  { id: "D_QYOdzoQe4", title: "Crash d'un DJI Mavic Pro", year: 2017, cat: "aerial", channel: "Olivier G. Burri" },
+  { id: "vSsUWqNi9S8", title: "Silence II, teaser", year: 2026, cat: "film", channel: "Mediamax" },
+  { id: "V8UISiZhLe8", title: "Fichtl's Lied, remake 4K", year: 2016, cat: "film", channel: "Olivier G. Burri" },
+  { id: "mnz-Gm3vIMA", title: "Le chat et le DJI Mavic 4 Pro", year: 2025, cat: "aerial", channel: "Olivier G. Burri", vertical: true },
   { id: "k2hUmBZ1Oxo", title: "Images aériennes 4K à l'iPhone 6S+", year: 2016, cat: "aerial", channel: "Olivier G. Burri" },
-  { id: "AvbfTBo6CYM", title: "Le rig ultime pour la Blackmagic Cinema Camera 6K", year: 2025, cat: "gear", channel: "Mediamax" },
-  { id: "RylOnxkElhc", title: "Faut-il acheter le Tilta Khronos ?", year: 2024, cat: "gear", channel: "Mediamax" },
-  { id: "lTzuAUj-kJs", title: "Tilta Nucleus Nano II, test de force", year: 2023, cat: "gear", channel: "Mediamax" },
-  { id: "PfecIFC_h4A", title: "Blackmagic URSA Mini Pro 12K", year: 2020, cat: "gear", channel: "Olivier G. Burri" },
-  { id: "YX-CU9Q8Pxs", title: "Rig RED Scarlet « Red or Dead »", year: 2015, cat: "gear", channel: "Olivier G. Burri" },
+  { id: "D_QYOdzoQe4", title: "Crash d'un DJI Mavic Pro", year: 2017, cat: "aerial", channel: "Olivier G. Burri" },
 ];
 
-const labels = { film: "Film", vfx: "VFX", aerial: "Aérien", gear: "Matériel et tutos" };
+const labels = { film: "Film", vfx: "VFX", aerial: "Aérien" };
 const playIcon = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
-const INITIAL_COUNT = 9; // cards shown under "Tout" before "voir plus"
+const small = matchMedia("(max-width: 760px)");
+const initialCount = () => (small.matches ? 4 : 9); // cards shown under "Tout" before "voir plus"
 
 const escapeHtml = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-
-// Featured first, then newest first
-const ordered = [...videos].sort((a, b) => (b.featured === true) - (a.featured === true) || b.year - a.year);
+const thumbSrcset = v => {
+  const base = `https://i.ytimg.com/vi/${v.id}/`;
+  // mq is true 16:9; sd/maxres are letterboxed or 16:9, object-fit: cover crops either way
+  return `${base}mqdefault.jpg 320w, ${base}sddefault.jpg 640w` + (v.hd === "sddefault" ? "" : `, ${base}maxresdefault.jpg 1280w`);
+};
 
 const grid = document.getElementById("grid");
-grid.innerHTML = ordered.map(v => {
+grid.innerHTML = videos.map(v => {
   const t = escapeHtml(v.title);
+  const kind = v.lead ? " lead" : v.featured ? " featured" : "";
+  const sizes = v.lead ? "(max-width: 760px) 100vw, 1200px" : v.featured ? "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 600px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 400px";
   return `
-  <article class="card${v.featured ? " featured" : ""}" data-cat="${v.cat}">
+  <article class="card${kind}" data-cat="${v.cat}">
     <div class="thumb">
-      <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+      <img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg" srcset="${thumbSrcset(v)}" sizes="${sizes}" alt="" loading="lazy" width="320" height="180">
       <span class="play-disc" aria-hidden="true">${playIcon}</span>
     </div>
     <div class="meta">
       <span class="badge">${labels[v.cat]}</span>
-      <h3><button class="card-link" type="button" data-play="${v.id}" data-title="${t}" aria-haspopup="dialog">${t}</button></h3>
+      <h3><button class="card-link" type="button" data-play="${v.id}" data-title="${t}"${v.vertical ? " data-vertical" : ""} aria-haspopup="dialog"><span class="visually-hidden">Lire la vidéo : </span>${t}</button></h3>
       <p><span>${v.year}</span><span>${v.channel}</span></p>
     </div>
   </article>`;
@@ -56,7 +56,7 @@ let expanded = false;
 
 function render() {
   const matching = cards.filter(c => filter === "all" || c.dataset.cat === filter);
-  const limit = filter === "all" && !expanded ? INITIAL_COUNT : Infinity;
+  const limit = filter === "all" && !expanded ? initialCount() : Infinity;
   cards.forEach(c => { c.hidden = true; });
   matching.forEach((c, i) => { c.hidden = i >= limit; });
   const hiddenCount = matching.length - Math.min(matching.length, limit);
@@ -78,16 +78,26 @@ more.addEventListener("click", () => {
   render();
   firstNew?.querySelector(".card-link").focus();
 });
+small.addEventListener("change", render);
 render();
 
 // Video player (privacy-enhanced embeds, loaded only on click)
 const dialog = document.getElementById("player");
 const frame = document.getElementById("player-frame");
+const ratio = document.getElementById("player-ratio");
+const ytLink = document.getElementById("player-yt");
 document.addEventListener("click", e => {
   const el = e.target.closest("[data-play]");
   if (!el) return;
-  frame.src = `https://www.youtube-nocookie.com/embed/${el.dataset.play}?autoplay=1&rel=0`;
-  document.getElementById("player-title").textContent = el.dataset.title || "";
+  const id = el.dataset.play;
+  const title = el.dataset.title || "";
+  // thumbnail behind the iframe while it loads, or if the embed is blocked
+  ratio.style.backgroundImage = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+  ratio.classList.toggle("vertical", el.hasAttribute("data-vertical"));
+  frame.title = `Lecteur vidéo : ${title}`;
+  frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+  ytLink.href = `https://www.youtube.com/watch?v=${id}`;
+  document.getElementById("player-title").textContent = title;
   dialog.showModal();
 });
 dialog.querySelector(".close").addEventListener("click", () => dialog.close());
@@ -95,21 +105,44 @@ dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close();
 // removeAttribute rather than src = "" (which would load this page inside the iframe)
 dialog.addEventListener("close", () => { frame.removeAttribute("src"); });
 
-// Hero background clip: skipped when the device asks for less motion or less data (the poster stays)
+// Hero background clip: skipped when the device asks for less motion or less data (the poster stays).
+// Small screens get the light encode (~440 KB instead of 1.8 MB).
 const heroVideo = document.getElementById("hero-video");
 const heroToggle = document.getElementById("hero-toggle");
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const conn = navigator.connection;
 const saveData = conn && (conn.saveData || /2g|3g/.test(conn.effectiveType || ""));
 if (!reduceMotion && !saveData) {
-  heroVideo.src = heroVideo.dataset.src;
-  heroVideo.play().then(() => { heroToggle.hidden = false; }).catch(() => {});
+  heroVideo.src = small.matches ? heroVideo.dataset.srcSmall : heroVideo.dataset.src;
+  let userPaused = false;
+  const syncToggle = () => {
+    heroToggle.classList.toggle("paused", heroVideo.paused);
+    heroToggle.querySelector(".toggle-label").textContent = heroVideo.paused ? "Relancer le fond vidéo" : "Mettre en pause le fond vidéo";
+  };
+  heroVideo.addEventListener("play", () => { heroToggle.hidden = false; syncToggle(); });
+  heroVideo.addEventListener("pause", syncToggle);
+  heroVideo.play().catch(() => {});
   heroToggle.addEventListener("click", () => {
-    const pausing = !heroVideo.paused;
-    pausing ? heroVideo.pause() : heroVideo.play();
-    heroToggle.classList.toggle("paused", pausing);
-    heroToggle.querySelector(".toggle-label").textContent = pausing ? "Relancer le fond vidéo" : "Mettre en pause le fond vidéo";
+    userPaused = !heroVideo.paused;
+    userPaused ? heroVideo.pause() : heroVideo.play();
   });
+  // Save battery: pause while the hero is off screen, resume unless the visitor paused it
+  new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) heroVideo.pause();
+    else if (!userPaused) heroVideo.play().catch(() => {});
+  }).observe(heroVideo);
 }
+
+// Copy the email address (for visitors without a mail app)
+const copyBtn = document.getElementById("copy-mail");
+const copyStatus = document.getElementById("copy-status");
+copyBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(copyBtn.dataset.mail);
+    copyStatus.textContent = `Adresse copiée : ${copyBtn.dataset.mail}`;
+  } catch {
+    copyStatus.textContent = `Copie impossible ici. L'adresse est ${copyBtn.dataset.mail}`;
+  }
+});
 
 document.getElementById("year").textContent = new Date().getFullYear();
