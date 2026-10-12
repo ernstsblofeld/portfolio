@@ -1,10 +1,13 @@
 // Work shown on the page (gear tests and tutorials live on the YouTube channel instead).
-// lead: full-width first card; featured: two-up after it.
+// Order of the first five is the owner's pick. lead: wide first card; featured: two-up after it.
 // hd: best YouTube thumbnail that exists for this video (Hybris has no maxres)
 const videos = [
-  { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax", lead: true },
-  { id: "LJefRF0cIwg", title: "Silence, court-métrage de 2005, version restaurée", year: 2025, cat: "film", channel: "Mediamax", featured: true },
-  { id: "siSyglaPrvA", title: "Hybris (musique de Moby)", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true, hd: "sddefault" },
+  { id: "siSyglaPrvA", title: "Hybris 4K (musique de Moby)", year: 2016, cat: "film", channel: "Olivier G. Burri", lead: true, hd: "sddefault" },
+  { id: "LJefRF0cIwg", title: "Silence, version remasterisée", year: 2025, cat: "film", channel: "Mediamax", featured: true },
+  { id: "c9H8vKGcMl8", title: "Impromptu", year: 2016, cat: "film", channel: "Olivier G. Burri", featured: true },
+  { id: "iWc9tmUiN9c", title: "Regrub Burger", year: 2015, cat: "film", channel: "Olivier G. Burri", featured: true },
+  { id: "4IVdDhjkAe8", title: "Mister Phil (Nikon Film Festival 2014)", year: 2014, cat: "film", channel: "Olivier G. Burri", featured: true },
+  { id: "Q-HdE8g_xGc", title: "Le caméléon et la Submariner", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "oFLwiEZMrdY", title: "Le chat et le robot aspirateur", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "pw-N6OE5cpQ", title: "Un bateau dans Blender", year: 2025, cat: "vfx", channel: "Mediamax" },
@@ -19,7 +22,7 @@ const videos = [
 const labels = { film: "Film", vfx: "VFX", aerial: "Aérien" };
 const playIcon = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 const small = matchMedia("(max-width: 760px)");
-const initialCount = () => (small.matches ? 4 : 9); // cards shown under "Tout" before "voir plus"
+const initialCount = () => (small.matches ? 5 : 11); // cards shown under "Tout" before "voir plus": all five picks on phones
 
 const escapeHtml = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const thumbSrcset = v => {
@@ -32,7 +35,7 @@ const grid = document.getElementById("grid");
 grid.innerHTML = videos.map(v => {
   const t = escapeHtml(v.title);
   const kind = v.lead ? " lead" : v.featured ? " featured" : "";
-  const sizes = v.lead ? "(max-width: 760px) 100vw, 1200px" : v.featured ? "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 600px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 400px";
+  const sizes = v.lead ? "(max-width: 760px) 100vw, 800px" : v.featured ? "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 600px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 400px";
   return `
   <article class="card${kind}" data-cat="${v.cat}">
     <div class="thumb">

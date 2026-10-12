@@ -108,10 +108,11 @@ h2 { font: 600 clamp(30px, 4.5vw, 48px)/1.1 var(--serif); letter-spacing: -.01em
 .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 40px 24px; }
 .card { position: relative; grid-column: span 2; }
 .card.featured { grid-column: span 3; }
-.card.lead { grid-column: 1 / -1; }
+/* Lead: image two thirds, title beside it. Hybris only exists as a 640 px thumbnail, so it is not stretched full width */
+.card.lead { grid-column: 1 / -1; display: grid; grid-template-columns: 2fr 1fr; gap: 0 40px; align-items: end; }
+.card.lead .meta { padding: 0 0 8px; }
 .card[hidden] { display: none; }
 .thumb { position: relative; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: var(--surface); }
-.card.lead .thumb { aspect-ratio: 21/9; }
 .thumb img { width: 100%; height: 100%; object-fit: cover; transition: filter .4s var(--ease-out); }
 .card:hover .thumb img, .card:focus-within .thumb img { filter: brightness(1.12); }
 .play-disc {
@@ -179,7 +180,8 @@ dialog::backdrop { background: rgba(0, 0, 0, .94); backdrop-filter: blur(6px); }
 @media (max-width: 1000px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
   .card, .card.featured { grid-column: span 1; }
-  .card.lead .thumb { aspect-ratio: 16/9; }
+  .card.lead { display: block; grid-column: 1 / -1; }
+  .card.lead .meta { padding-top: 14px; }
 }
 
 @media (max-width: 760px) {
