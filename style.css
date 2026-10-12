@@ -53,7 +53,9 @@ section[id] { scroll-margin-top: 88px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; flex: none; }
 .logo-mark { width: 28px; height: 28px; border-radius: 4px; }
 .logo-word { height: 18px; width: auto; }
-.footer-logo { height: 44px; width: auto; margin-bottom: 4px; }
+.footer-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; }
+.footer-mark { width: 44px; height: 44px; border-radius: 6px; }
+.footer-logo { height: 44px; width: auto; }
 .nav nav { display: flex; gap: clamp(12px, 3vw, 32px); font-size: 14px; color: var(--muted); }
 .nav nav a { display: inline-flex; align-items: center; min-height: 44px; transition: color .2s; }
 .nav nav a:hover { color: var(--text); }
