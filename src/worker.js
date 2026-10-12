@@ -8,7 +8,7 @@ export default {
       url.hostname = CANONICAL_HOST;
       return Response.redirect(url.toString(), 301);
     }
-    // The bare domain picks a language version: /fr/, /en/ or /de/
+    // The bare domain picks a language version: /fr/, /en/, /de/ or /it/
     if (url.pathname === "/" || url.pathname === "/index.html") {
       const lang = pickLanguage(request);
       return new Response(null, {
@@ -25,16 +25,16 @@ export default {
   },
 };
 
-const LANGS = ["fr", "en", "de"];
-// Countries whose visitors read French or German when their browser asks for none of our three languages
-const COUNTRY_LANG = { FR: "fr", BE: "fr", LU: "fr", MC: "fr", CH: "fr", DE: "de", AT: "de", LI: "de" };
+const LANGS = ["fr", "en", "de", "it"];
+// Countries whose visitors read French, German or Italian when their browser asks for none of our languages
+const COUNTRY_LANG = { FR: "fr", BE: "fr", LU: "fr", MC: "fr", CH: "fr", DE: "de", AT: "de", LI: "de", IT: "it", SM: "it", VA: "it" };
 
 // 1. the visitor's own choice (cookie set by the language switch)
 // 2. the browser's preferred languages, in order of preference
 // 3. the visitor's country (Cloudflare geolocation)
 // 4. English
 function pickLanguage(request) {
-  const saved = /(?:^|;\s*)lang=(fr|en|de)\b/.exec(request.headers.get("Cookie") || "");
+  const saved = /(?:^|;\s*)lang=(fr|en|de|it)\b/.exec(request.headers.get("Cookie") || "");
   if (saved) return saved[1];
   const accepted = (request.headers.get("Accept-Language") || "")
     .split(",")

@@ -8,14 +8,15 @@
   <link rel="alternate" hreflang="fr" href="https://mediamax.ch/fr/">
   <link rel="alternate" hreflang="en" href="https://mediamax.ch/en/">
   <link rel="alternate" hreflang="de" href="https://mediamax.ch/de/">
+  <link rel="alternate" hreflang="it" href="https://mediamax.ch/it/">
   <link rel="alternate" hreflang="x-default" href="https://mediamax.ch/">
   <meta name="theme-color" content="#0c0c0d">
   <style>body{background:#0c0c0d;color:#f2efe9;font:16px system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0}a{color:inherit;margin:0 .5em}</style>
   <script>
     // Same rule as the worker: saved choice, then browser languages, else English
     (function () {
-      var langs = ["fr", "en", "de"];
-      var saved = (document.cookie.match(/(?:^|; )lang=(fr|en|de)/) || [])[1];
+      var langs = ["fr", "en", "de", "it"];
+      var saved = (document.cookie.match(/(?:^|; )lang=(fr|en|de|it)/) || [])[1];
       var pick = saved || (navigator.languages || [navigator.language || ""])
         .map(function (l) { return l.slice(0, 2).toLowerCase(); })
         .filter(function (l) { return langs.indexOf(l) >= 0; })[0] || "en";
@@ -24,6 +25,6 @@
   </script>
 </head>
 <body>
-  <p><a href="/fr/" lang="fr">Français</a> <a href="/en/" lang="en">English</a> <a href="/de/" lang="de">Deutsch</a></p>
+  <p><a href="/fr/" lang="fr">Français</a> <a href="/en/" lang="en">English</a> <a href="/de/" lang="de">Deutsch</a> <a href="/it/" lang="it">Italiano</a></p>
 </body>
 </html>
