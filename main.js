@@ -40,7 +40,7 @@ grid.innerHTML = videos.map(v => {
   const sizes = v.lead ? "(max-width: 760px) 100vw, 800px" : v.featured ? "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 600px" : "(max-width: 760px) 100vw, (max-width: 1000px) 50vw, 400px";
   return `
   <article class="card${kind}" data-cat="${cats(v).join(" ")}">
-    <div class="thumb${v.pillar ? " pillar" : ""}"${v.pillar ? ` style="--bg:url(https://i.ytimg.com/vi/${v.id}/mqdefault.jpg)"` : ""}>
+    <div class="thumb${v.pillar ? " pillar" : ""}"${v.pillar ? ` style="--fill:url(https://i.ytimg.com/vi/${v.id}/mqdefault.jpg)"` : ""}>
       <img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg" srcset="${thumbSrcset(v)}" sizes="${sizes}" alt="" loading="lazy" width="320" height="180"${v.crop ? ` style="scale:${v.crop}"` : ""}>
       <span class="play-disc" aria-hidden="true">${playIcon}</span>
     </div>
