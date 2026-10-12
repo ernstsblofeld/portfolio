@@ -61,7 +61,7 @@ section[id] { scroll-margin-top: 88px; }
 .nav nav { display: flex; gap: clamp(12px, 3vw, 32px); font-size: 14px; color: var(--muted); }
 .nav nav a { display: inline-flex; align-items: center; min-height: 44px; transition: color .2s; }
 .nav nav a:hover { color: var(--text); }
-.nav nav a[aria-current="true"] { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.nav nav a[aria-current] { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 8px; }
 
 /* Hero */
 .hero { position: relative; min-height: 92vh; display: grid; align-items: end; padding: 0 var(--inset) 12vh; overflow: hidden; }
@@ -120,8 +120,8 @@ h2 { font: 600 clamp(30px, 4.5vw, 48px)/1.1 var(--serif); letter-spacing: -.01em
 .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 40px 24px; }
 .card { position: relative; grid-column: span 2; }
 .card.featured { grid-column: span 3; }
-/* Lead: image two thirds, title beside it. Hybris only exists as a 640 px thumbnail, so it is not stretched full width */
-.card.lead { grid-column: 1 / -1; display: grid; grid-template-columns: 2fr 1fr; gap: 0 40px; align-items: end; }
+/* Lead: image beside its title, capped at 640 px because Hybris only exists as a 640 px thumbnail */
+.card.lead { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 640px) 1fr; gap: 0 48px; align-items: end; }
 .card.lead .meta { padding: 0 0 8px; }
 .card[hidden] { display: none; }
 .thumb { position: relative; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: var(--surface); }

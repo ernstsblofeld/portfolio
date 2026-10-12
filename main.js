@@ -21,7 +21,10 @@ const labels = { film: "Film", vfx: "VFX" };
 const cats = v => [].concat(v.cat);
 const playIcon = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 const small = matchMedia("(max-width: 760px)");
-const initialCount = () => (small.matches ? 6 : 8); // cards shown under "Tout" before "voir plus": the five picks + the GoPro on phones, + one full 3-up row on desktop
+const mid = matchMedia("(max-width: 1000px)");
+// Cards shown under "Tout" before "voir plus", always ending on a full row:
+// phones 6 (one column), tablets 7 (lead + 3 rows of 2), desktop 8 (lead + 2x2 + one row of 3)
+const initialCount = () => (small.matches ? 6 : mid.matches ? 7 : 8);
 
 const escapeHtml = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 // French typography: no-break space before : ? ! » and after «
@@ -86,6 +89,7 @@ more.addEventListener("click", () => {
   firstNew?.querySelector(".card-link").focus();
 });
 small.addEventListener("change", render);
+mid.addEventListener("change", render);
 render();
 
 // Video player (privacy-enhanced embeds, loaded only on click)
@@ -93,9 +97,11 @@ const dialog = document.getElementById("player");
 const frame = document.getElementById("player-frame");
 const ratio = document.getElementById("player-ratio");
 const ytLink = document.getElementById("player-yt");
+let lastOpener = null; // Safari does not focus buttons on click, so remember the opener to restore focus on close
 document.addEventListener("click", e => {
   const el = e.target.closest("[data-play]");
   if (!el) return;
+  lastOpener = el;
   const id = el.dataset.play;
   const title = el.dataset.title || "";
   // thumbnail behind the iframe while it loads, or if the embed is blocked
@@ -110,7 +116,10 @@ document.addEventListener("click", e => {
 dialog.querySelector(".close").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
 // removeAttribute rather than src = "" (which would load this page inside the iframe)
-dialog.addEventListener("close", () => { frame.removeAttribute("src"); });
+dialog.addEventListener("close", () => {
+  frame.removeAttribute("src");
+  if (lastOpener && !lastOpener.contains(document.activeElement)) lastOpener.focus({ preventScroll: true });
+});
 
 // Hero background clip: skipped when the device asks for less motion or less data (the poster stays).
 // Small screens get the light encode (~440 KB instead of 1.8 MB).
@@ -142,12 +151,16 @@ if (!reduceMotion && !saveData) {
 
 // Nav: mark the section currently in view
 const navLinks = [...document.querySelectorAll(".nav nav a")];
+// Every top-level section is watched (hero and stats included) so the mark clears when no linked section is in view
 const sectionObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-    navLinks.forEach(a => a.setAttribute("aria-current", String(a.hash === `#${e.target.id}`)));
+    navLinks.forEach(a => {
+      if (e.target.id && a.hash === `#${e.target.id}`) a.setAttribute("aria-current", "location");
+      else a.removeAttribute("aria-current");
+    });
   });
 }, { rootMargin: "-45% 0px -50% 0px" });
-navLinks.forEach(a => { const sec = document.querySelector(a.hash); if (sec) sectionObserver.observe(sec); });
+document.querySelectorAll("main > section").forEach(sec => sectionObserver.observe(sec));
 
 document.getElementById("year").textContent = new Date().getFullYear();
