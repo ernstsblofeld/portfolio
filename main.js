@@ -12,9 +12,7 @@ const videos = [
   { id: "5GodAChg-ls", title: "Une GoPro lancée dans l'espace retombe sur Terre", year: 2026, cat: "vfx", channel: "Mediamax" },
   { id: "vSsUWqNi9S8", title: "Silence II, teaser", year: 2026, cat: "film", channel: "Mediamax" },
   { id: "V8UISiZhLe8", title: "Fichtl's Lied, remake 4K", year: 2016, cat: "film", channel: "Olivier G. Burri" },
-  { id: "mnz-Gm3vIMA", title: "Le chat et le DJI Mavic 4 Pro", year: 2025, cat: "aerial", channel: "Olivier G. Burri", vertical: true },
   { id: "k2hUmBZ1Oxo", title: "Images aériennes 4K à l'iPhone 6S+", year: 2016, cat: "aerial", channel: "Olivier G. Burri" },
-  { id: "D_QYOdzoQe4", title: "Crash d'un DJI Mavic Pro", year: 2017, cat: "aerial", channel: "Olivier G. Burri" },
 ];
 
 const labels = { film: "Film", vfx: "VFX", aerial: "Aérien" };
