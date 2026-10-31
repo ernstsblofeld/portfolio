@@ -11,7 +11,7 @@ import json
 import pathlib
 import re
 
-CSS_V = "18"
+CSS_V = "19"
 JS_V = "17"
 LANGS = ["fr", "en", "de", "it"]
 NAMES = {"fr": "Français", "en": "English", "de": "Deutsch", "it": "Italiano"}

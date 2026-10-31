@@ -56,7 +56,8 @@
     "new_tab": "nouvel onglet",
     "open_yt": "Ouvrir sur YouTube",
     "close_video": "Fermer la vidéo",
-    "player": "Lecteur vidéo"
+    "player": "Lecteur vidéo",
+    "palm": "Accès à Palm Studio"
   },
   "en": {
     "html_lang": "en",
@@ -115,7 +116,8 @@
     "new_tab": "opens in a new tab",
     "open_yt": "Open on YouTube",
     "close_video": "Close video",
-    "player": "Video player"
+    "player": "Video player",
+    "palm": "Palm Studio access"
   },
   "de": {
     "html_lang": "de-CH",
@@ -174,7 +176,8 @@
     "new_tab": "öffnet in einem neuen Tab",
     "open_yt": "Auf YouTube öffnen",
     "close_video": "Video schliessen",
-    "player": "Videoplayer"
+    "player": "Videoplayer",
+    "palm": "Zugang zu Palm Studio"
   },
   "it": {
     "html_lang": "it-CH",
@@ -233,6 +236,7 @@
     "new_tab": "si apre in una nuova scheda",
     "open_yt": "Aprire su YouTube",
     "close_video": "Chiudere il video",
-    "player": "Lettore video"
+    "player": "Lettore video",
+    "palm": "Accesso a Palm Studio"
   }
 }

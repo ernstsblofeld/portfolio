@@ -213,6 +213,7 @@ footer address { font-style: normal; line-height: 1.5; }
 }
 .footer-upload .icon { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .footer-upload:hover { color: var(--text); }
+.footer-upload + .footer-upload { margin-top: -12px; } /* Palm Studio, right under the cloud */
 
 /* Player */
 dialog { border: 0; padding: 0; background: transparent; color: var(--text); width: min(1100px, 94vw); margin: auto; }
