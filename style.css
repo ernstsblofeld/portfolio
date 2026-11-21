@@ -91,8 +91,7 @@ section[id] { scroll-margin-top: 88px; }
 /* Hero */
 .hero { position: relative; min-height: 92vh; display: grid; align-items: end; padding: 0 var(--inset) 12vh; overflow: hidden; }
 .hero-bg { position: absolute; inset: 0; }
-/* The trailer source carries thin black side bars: the 1.08 scale crops them out */
-.hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; opacity: .6; filter: grayscale(.15); transform: scale(1.08); }
+.hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; opacity: .6; filter: grayscale(.15); }
 .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 6%, transparent 55%), linear-gradient(to right, rgba(12,12,13,.92), transparent 65%); }
 .hero-content { position: relative; max-width: 760px; }
 h1 { font: 600 clamp(46px, 8.4vw, 104px)/.95 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
@@ -100,10 +99,10 @@ h2 { font: 600 clamp(30px, 4.5vw, 48px)/1.1 var(--serif); letter-spacing: -.01em
 .lede { font-size: clamp(17px, 2vw, 20px); color: var(--text-soft); margin: 24px 0 34px; max-width: 34em; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* The one authored moment: the opening frame settles like a slow push-in ending */
+/* The one authored moment: the opening frame settles like the end of a slow push-in */
 @media (prefers-reduced-motion: no-preference) {
   .hero-bg video { animation: settle 2.6s var(--ease-out) both; }
-  @keyframes settle { from { transform: scale(1.16); filter: grayscale(.15) brightness(.5); } }
+  @keyframes settle { from { transform: scale(1.08); filter: grayscale(.15) brightness(.5); } }
 }
 
 .hero-toggle {
