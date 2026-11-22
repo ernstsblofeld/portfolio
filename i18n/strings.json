@@ -14,8 +14,6 @@
     "nav_contact": "Contact",
     "lang_label": "Langue",
     "lede": "L’atelier d’effets visuels et de films d’Olivier G. Burri. Compositing, étalonnage et restauration, du court‑métrage à l’image d’archive.",
-    "silence_title": "Silence, version remasterisée",
-    "cta_silence": "Voir «&nbsp;Silence&nbsp;», le court‑métrage",
     "cta_browse": "Parcourir les travaux",
     "toggle_pause": "Mettre en pause le fond vidéo",
     "stats_label": "Chiffres clés",
@@ -58,7 +56,9 @@
     "close_video": "Fermer la vidéo",
     "player": "Lecteur vidéo",
     "palm": "Accès à Palm Studio",
-    "ivv": "La série In Vino Veritas"
+    "ivv": "La série In Vino Veritas",
+    "reel_title": "Mediamax Productions, bande démo",
+    "cta_reel": "Voir la bande démo"
   },
   "en": {
     "html_lang": "en",
@@ -75,8 +75,6 @@
     "nav_contact": "Contact",
     "lang_label": "Language",
     "lede": "Olivier G. Burri’s visual effects and film studio. Compositing, colour grading and restoration, from short films to archive footage.",
-    "silence_title": "Silence, remastered",
-    "cta_silence": "Watch “Silence”, the short film",
     "cta_browse": "Browse the work",
     "toggle_pause": "Pause background video",
     "stats_label": "Key figures",
@@ -119,7 +117,9 @@
     "close_video": "Close video",
     "player": "Video player",
     "palm": "Palm Studio access",
-    "ivv": "The In Vino Veritas series"
+    "ivv": "The In Vino Veritas series",
+    "reel_title": "Mediamax Productions, showreel",
+    "cta_reel": "Watch the showreel"
   },
   "de": {
     "html_lang": "de-CH",
@@ -136,8 +136,6 @@
     "nav_contact": "Kontakt",
     "lang_label": "Sprache",
     "lede": "Das Studio für visuelle Effekte und Film von Olivier G. Burri. Compositing, Color Grading und Restaurierung, vom Kurzfilm bis zum Archivmaterial.",
-    "silence_title": "Silence, remasterte Fassung",
-    "cta_silence": "Kurzfilm «Silence» ansehen",
     "cta_browse": "Arbeiten entdecken",
     "toggle_pause": "Hintergrundvideo pausieren",
     "stats_label": "Kennzahlen",
@@ -180,7 +178,9 @@
     "close_video": "Video schliessen",
     "player": "Videoplayer",
     "palm": "Zugang zu Palm Studio",
-    "ivv": "Die Romanreihe In Vino Veritas"
+    "ivv": "Die Romanreihe In Vino Veritas",
+    "reel_title": "Mediamax Productions, Showreel",
+    "cta_reel": "Showreel ansehen"
   },
   "it": {
     "html_lang": "it-CH",
@@ -197,8 +197,6 @@
     "nav_contact": "Contatti",
     "lang_label": "Lingua",
     "lede": "Lo studio di effetti visivi e di cinema di Olivier G. Burri. Compositing, color grading e restauro, dal cortometraggio al materiale d’archivio.",
-    "silence_title": "Silence, versione rimasterizzata",
-    "cta_silence": "Guardi il cortometraggio «Silence»",
     "cta_browse": "Scopra i lavori",
     "toggle_pause": "Pausa del video di sfondo",
     "stats_label": "In cifre",
@@ -241,6 +239,8 @@
     "close_video": "Chiudere il video",
     "player": "Lettore video",
     "palm": "Accesso a Palm Studio",
-    "ivv": "La serie In Vino Veritas"
+    "ivv": "La serie In Vino Veritas",
+    "reel_title": "Mediamax Productions, showreel",
+    "cta_reel": "Guardi lo showreel"
   }
 }
