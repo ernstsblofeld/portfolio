@@ -1,0 +1,30 @@
+# Used only by the mirror on mediamax.video (Hostinger / LiteSpeed), which deploys this repository
+# from GitHub on every push. mediamax.ch (Cloudflare) ignores this file: see .assetsignore and src/worker.js.
+RewriteEngine On
+
+# HTTPS and bare domain (the Cloudflare worker does this for mediamax.ch)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://mediamax.video%{REQUEST_URI} [R=301,L]
+
+# The repository is deployed whole: keep its build and Cloudflare files out of reach
+RewriteRule ^(src|tools|i18n|versions|\.impeccable|\.claude)(/|$) - [R=404,L]
+RewriteRule ^(wrangler\.jsonc|\.assetsignore|\.gitignore|.*\.md)$ - [R=404,L]
+
+# Root: language choice (cookie, then Accept-Language, else English), same rules as src/worker.js
+RewriteCond %{HTTP_COOKIE} (^|;\s*)lang=(fr|en|de|it)
+RewriteRule ^(index\.html)?$ /%2/ [R=302,L]
+RewriteCond %{HTTP:Accept-Language} ^(fr|de|it|en) [NC]
+RewriteRule ^(index\.html)?$ /%1/ [R=302,L]
+RewriteCond %{HTTP:Accept-Language} ^(gsw|rm) [NC]
+RewriteRule ^(index\.html)?$ /de/ [R=302,L]
+RewriteRule ^(index\.html)?$ /en/ [R=302,L]
+
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html)?$">
+    Header set Vary "Accept-Language, Cookie"
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+  # mediamax.ch is the main site: the pages' canonical links point there, and the mirror stays out of search results
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
